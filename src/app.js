@@ -11,5 +11,6 @@ export class App {
       { route: 'contacts', name: 'contacts', moduleId: 'contact-list', nav: true, title: 'Contacts' },
       { route: 'contacts/:id', name: 'contact-details', moduleId: 'contact-details' }
     ]);
+    config.mapUknownRoutes('not-found');
   }
 }
