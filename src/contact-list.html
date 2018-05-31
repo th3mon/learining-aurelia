@@ -1,7 +1,28 @@
 <template>
   <section class="container">
     <h1>Contacts</h1>
-    <div class="panel panel-default" repeat.for="group of contacts | groupBy: 'firstLetter' | orderBy: 'key'">
+
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Filter" value.bind="filter & debounce">
+          <span class="input-group-btn" if.bind="filter">
+            <button class="btn btn-default" click.delegate="filter = ''">
+              <i class="fa fa-times"></i>
+              <span class="sr-only">Clear</span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default"
+      repeat.for="group of contacts
+        | filterBy: filter : 'firstName' : 'lastName' : 'company'
+        | groupBy: 'firstLetter'
+        | orderBy: 'key'
+      "
+    >
       <div class="panel-heading">
         ${group.key}
       </div>
