@@ -14,4 +14,10 @@ export class Contact {
 
     return fullName;
   }
+
+  get firstLetter() {
+    const name = this.lastName || this.firstName || this.company;
+
+    return name ? name[0].toUpperCase() : '?';
+  }
 }

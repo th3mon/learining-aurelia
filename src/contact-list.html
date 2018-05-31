@@ -1,10 +1,27 @@
 <template>
   <section class="container">
     <h1>Contacts</h1>
-    <ul>
-      <li repeat.for="contact of contacts | orderBy: 'fullName'">
-        ${contact.fullName}
-      </li>
-    </ul>
+    <div class="panel panel-default" repeat.for="group of contacts | groupBy: 'firstLetter' | orderBy: 'key'">
+      <div class="panel-heading">
+        ${group.key}
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" repeat.for="contact of group.items | orderBy: 'fullName'">
+          <a route-href="route: contact-details; params.bind: { id: contact.id }">
+            <span if.bind="contact.isPerson">
+              ${contact.firstName}
+              <strong>
+                ${contact.lastName}
+              </strong>
+            </span>
+            <span else>
+              <strong>
+                ${contact.company}
+              </strong>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
