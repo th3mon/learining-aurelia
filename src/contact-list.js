@@ -1,8 +1,18 @@
 import { inject } from 'aurelia-framework';
+import { ContactGateway } from './contact-gateway';
 
-@inject()
+@inject(ContactGateway)
 export class ContactList {
-  constructor() {
-    console.log(this.constructor);
+  contacts = [];
+
+  constructor(contactGateway) {
+    this.contactGateway = contactGateway;
+  }
+
+  activate() {
+    return this.contactGateway.getAll().then(contacts => {
+      this.contacts.splice(0);
+      this.contacts.push.apply(this.contacts, contacts);
+    });
   }
 }

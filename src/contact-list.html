@@ -1,3 +1,10 @@
 <template>
-  <h1>Contacts</h1>
+  <section class="container">
+    <h1>Contacts</h1>
+    <ul>
+      <li repeat.for="contact of contacts">
+        ${contact.fullName}
+      </li>
+    </ul>
+  </section>
 </template>
