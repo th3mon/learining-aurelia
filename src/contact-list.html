@@ -2,7 +2,7 @@
   <section class="container">
     <h1>Contacts</h1>
     <ul>
-      <li repeat.for="contact of contacts">
+      <li repeat.for="contact of contacts | orderBy: 'fullName'">
         ${contact.fullName}
       </li>
     </ul>
